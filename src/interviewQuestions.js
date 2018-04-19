@@ -18,5 +18,28 @@ function getMostCommonWord(str) {
   });
   return mostCommon;
 }
+// Your input is an array containing unsorted words. Suggest an
+// efficient solution for implementing hasWord(word) which receives
+// a word and returns true if it is in the array and false otherwise.
+// You are not allowed to use JS Objects (maps) in your solution but
+// can use Arrays. Solution time complexity is more important then it’s
+// space complexity.
+function WordFinder(words) {
+  const dict = {};
+  function encode(word) {
+    return word
+      .split("")
+      .map(char => char.charCodeAt(0))
+      .join("000");
+  }
+  words.forEach(word => {
+    dict[encode(word)] = true;
+  });
+  return {
+    hasWord: function hasWord(word) {
+      return !!dict[encode(word)];
+    }
+  };
+}
 
-module.exports = { getMostCommonWord };
+module.exports = { getMostCommonWord, WordFinder };
