@@ -42,4 +42,32 @@ function WordFinder(words) {
   };
 }
 
-module.exports = { getMostCommonWord, WordFinder };
+/**
+Write 2 functions, which receive an array of functions as an input, 
+and notify using a promise, when they are all complete. Each of the 
+input functions returns a promise and resolves it when done.
+Your first function should execute all the functions in the input array,
+without any importance for their order, and the second one should 
+execute each after the previous ended.
+Both should notify its caller using a promise when they are done.
+ */
+function promiseAll(fnArr) {
+  return Promise.all(fnArr.map(fn => fn()));
+}
+
+async function promiseInSeries(fnArr) {
+  const results = [];
+  for (let index = 0; index < fnArr.length; index++) {
+    const fn = fnArr[index];
+    const res = await fn();
+    results.push(res);
+  }
+  return Promise.resolve(results);
+}
+
+module.exports = {
+  getMostCommonWord,
+  WordFinder,
+  promiseAll,
+  promiseInSeries
+};
