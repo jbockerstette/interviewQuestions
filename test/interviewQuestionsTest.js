@@ -67,7 +67,7 @@ describe("promiseAll", function() {
   it("should run all at once.", function(done) {
     const allAtOnce = promiseAll(fns);
     allAtOnce.then(res => {
-      console.log("promiseAll results=", res);
+      // console.log("promiseAll results=", res);
       assert.equal(res[0], 1, "should be 1 for the first in the series");
       assert.equal(res[1], 2, "should be 2 for the second in the series");
       assert.equal(res[2], 3, "should be 3 for the third in the series");
@@ -79,7 +79,7 @@ describe("promiseInSeries", function() {
   it("should run one at a time.", function(done) {
     const inSeries = promiseInSeries(fns);
     inSeries.then(res => {
-      console.log("promiseInSeries results=", res);
+      // console.log("promiseInSeries results=", res);
       assert.equal(res[0], 1, "should be 1 for the first one to complete");
       assert.equal(res[1], 2, "should be 2 for the second one to complete");
       assert.equal(res[2], 3, "should be 3 for the third one to complete");
