@@ -5,7 +5,8 @@ const {
   promiseAll,
   promiseInSeries,
   addValue,
-  getPrecedingValue
+  getPrecedingValue,
+  LinkedList
 } = require("../src/interviewQuestions");
 const fns = [
   function() {
@@ -109,6 +110,33 @@ describe("getPrecedingValue", function() {
   });
   it("should return the first previous value if multiple values exist.", function() {
     const value = getPrecedingValue(8);
+    assert.equal(value, 1);
+  });
+});
+describe("Linked List", function() {
+  const values = [1, 8, 3, 4, 5, 6, 7, 8, 9, 8];
+  const list = new LinkedList();
+  values.forEach(element => {
+    list.addValue(element);
+  });
+  it("should get the preceding value.", function() {
+    const value = list.getPrecedingValue(5);
+    assert.equal(value, 4);
+  });
+  it("should get the preceding value.", function() {
+    const value = list.getPrecedingValue(9);
+    assert.equal(value, 8);
+  });
+  it("should return null if it is the first value.", function() {
+    const value = list.getPrecedingValue(1);
+    assert.equal(value, null);
+  });
+  it("should return -1 if value is not found.", function() {
+    const value = list.getPrecedingValue(100);
+    assert.equal(value, -1);
+  });
+  it("should return the first previous value if multiple values exist.", function() {
+    const value = list.getPrecedingValue(8);
     assert.equal(value, 1);
   });
 });

@@ -106,11 +106,65 @@ function getPrecedingValue(value) {
   return previousValue;
 }
 
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.nextNode = null;
+  }
+  attachNext(node) {
+    this.nextNode = node;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.startNode = null;
+    this.currentNode = null;
+  }
+  addValue(value) {
+    const newNode = new Node(value);
+    if (!this.startNode) {
+      this.startNode = newNode;
+    }
+    if (!this.currentNode) {
+      this.currentNode = newNode;
+    } else {
+      this.currentNode.attachNext(newNode);
+    }
+    this.currentNode = newNode;
+  }
+  getPrecedingValue(value) {
+    let currNode = this.startNode;
+    let foundNode = null;
+    let lastNode = null;
+    let foundValue = -1;
+    let found = false;
+    while (!found && currNode) {
+      if (currNode.value === value) {
+        foundNode = lastNode;
+        found = true;
+      } else {
+        lastNode = currNode;
+        currNode = currNode.nextNode;
+      }
+    }
+    if (!found) {
+      foundValue = -1;
+    } else if (!foundNode) {
+      foundValue = null;
+    } else {
+      foundValue = foundNode.value;
+    }
+    return foundValue;
+  }
+}
+
 module.exports = {
   getMostCommonWord,
   WordFinder,
   promiseAll,
   promiseInSeries,
   addValue,
-  getPrecedingValue
+  getPrecedingValue,
+  LinkedList
 };
