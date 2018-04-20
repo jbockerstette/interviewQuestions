@@ -65,9 +65,52 @@ async function promiseInSeries(fnArr) {
   return Promise.resolve(results);
 }
 
+/**
+ * Question #5: Implement preceding value in a LinkedList — This function
+ *  receives a value and returns the preceding value in the link list.
+ * return -1 if not found.
+ * If the value exist more than once, then return the first.
+ * If we are asking for the first value, then return null.
+ */
+// const linkItem = {
+// previousItem: {},
+// itemValue: ""
+// };
+
+const map = new Map();
+let lastItemAdded = null;
+function addValue(value) {
+  const newItem = {
+    previousItem: lastItemAdded,
+    itemValue: value
+  };
+  let items = map.get(value);
+  if (!items) {
+    map.set(value, [newItem]);
+  } else {
+    items.push(newItem);
+  }
+  lastItemAdded = newItem;
+}
+
+function getPrecedingValue(value) {
+  let previousValue = -1;
+  const items = map.get(value);
+  if (items) {
+    if (!items[0].previousItem) {
+      previousValue = null;
+    } else {
+      previousValue = items[0].previousItem.itemValue;
+    }
+  }
+  return previousValue;
+}
+
 module.exports = {
   getMostCommonWord,
   WordFinder,
   promiseAll,
-  promiseInSeries
+  promiseInSeries,
+  addValue,
+  getPrecedingValue
 };

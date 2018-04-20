@@ -3,7 +3,9 @@ const {
   getMostCommonWord,
   WordFinder,
   promiseAll,
-  promiseInSeries
+  promiseInSeries,
+  addValue,
+  getPrecedingValue
 } = require("../src/interviewQuestions");
 const fns = [
   function() {
@@ -82,5 +84,31 @@ describe("promiseInSeries", function() {
       assert.equal(res[2], 3, "should be 3 for the third one to complete");
       done();
     });
+  });
+});
+describe("getPrecedingValue", function() {
+  const values = [1, 8, 3, 4, 5, 6, 7, 8, 9, 8];
+  values.forEach(element => {
+    addValue(element);
+  });
+  it("should get the preceding value.", function() {
+    const value = getPrecedingValue(5);
+    assert.equal(value, 4);
+  });
+  it("should get the preceding value.", function() {
+    const value = getPrecedingValue(9);
+    assert.equal(value, 8);
+  });
+  it("should return null if it is the first value.", function() {
+    const value = getPrecedingValue(1);
+    assert.equal(value, null);
+  });
+  it("should return -1 if value is not found.", function() {
+    const value = getPrecedingValue(100);
+    assert.equal(value, -1);
+  });
+  it("should return the first previous value if multiple values exist.", function() {
+    const value = getPrecedingValue(8);
+    assert.equal(value, 1);
   });
 });
