@@ -8,6 +8,34 @@ function repeatify(n) {
   return a;
 }
 
+// Write a function that would allow you to do this.
+// var addSix = createBase(6);
+// addSix(10); // returns 16
+// addSix(21); // returns 27
+function createBase(base) {
+  return function(val) {
+    return val + base;
+  };
+}
+
+// How would you use closure to create a private counter.
+function getCounter() {
+  let counter = 0;
+  return {
+    incrementCounter: function() {
+      counter++;
+    },
+    decrementCounter: function() {
+      counter--;
+    },
+    getCount: function() {
+      return counter;
+    }
+  };
+}
+
 module.exports = {
-  repeatify
+  repeatify,
+  createBase,
+  getCounter
 };
