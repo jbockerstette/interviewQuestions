@@ -2,7 +2,8 @@ const assert = require("assert");
 const {
   repeatify,
   createBase,
-  createCounter
+  createCounter,
+  QuestionsMarks
 } = require("../src/interviewQuestions2");
 
 describe("repeatify", function() {
@@ -17,7 +18,7 @@ describe("createBase", function() {
     assert.equal(addSix(10), 16, "should be 16");
   });
 });
-describe.only("createCounter", function() {
+describe("createCounter", function() {
   it("should create a private counter.", function() {
     const c1 = createCounter();
     const c2 = createCounter();
@@ -31,5 +32,12 @@ describe.only("createCounter", function() {
       c2.getCount(),
       "should each have a different count"
     );
+  });
+});
+describe("QuestionsMarks", function() {
+  it("should create a private counter.", function() {
+    assert.equal(QuestionsMarks("acc?7??sss?3rr1??????5"), "true");
+    assert.equal(QuestionsMarks("aa6?9"), "false");
+    assert.equal(QuestionsMarks("arrb6???4xxbl5???eee5"), "true");
   });
 });
