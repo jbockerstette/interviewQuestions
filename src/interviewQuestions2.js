@@ -19,7 +19,7 @@ function createBase(base) {
 }
 
 // How would you use closure to create a private counter.
-function getCounter() {
+function createCounter() {
   let counter = 0;
   return {
     incrementCounter: function() {
@@ -37,5 +37,5 @@ function getCounter() {
 module.exports = {
   repeatify,
   createBase,
-  getCounter
+  createCounter
 };

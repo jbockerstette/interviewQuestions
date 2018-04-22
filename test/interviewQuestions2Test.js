@@ -2,7 +2,7 @@ const assert = require("assert");
 const {
   repeatify,
   createBase,
-  getCounter
+  createCounter
 } = require("../src/interviewQuestions2");
 
 describe("repeatify", function() {
@@ -17,10 +17,10 @@ describe("createBase", function() {
     assert.equal(addSix(10), 16, "should be 16");
   });
 });
-describe("getCounter", function() {
+describe.only("createCounter", function() {
   it("should create a private counter.", function() {
-    const c1 = getCounter();
-    const c2 = getCounter();
+    const c1 = createCounter();
+    const c2 = createCounter();
     c1.incrementCounter();
     c2.incrementCounter();
     c2.incrementCounter();
