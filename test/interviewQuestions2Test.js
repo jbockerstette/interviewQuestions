@@ -3,7 +3,8 @@ const {
   repeatify,
   createBase,
   createCounter,
-  QuestionsMarks
+  QuestionsMarks,
+  longestWord
 } = require("../src/interviewQuestions2");
 
 describe("repeatify", function() {
@@ -35,9 +36,15 @@ describe("createCounter", function() {
   });
 });
 describe("QuestionsMarks", function() {
-  it("should create a private counter.", function() {
+  it("should check for question marks between number pairs adding to 10.", function() {
     assert.equal(QuestionsMarks("acc?7??sss?3rr1??????5"), "true");
     assert.equal(QuestionsMarks("aa6?9"), "false");
     assert.equal(QuestionsMarks("arrb6???4xxbl5???eee5"), "true");
+  });
+});
+describe.only("longestWord", function() {
+  it("should return the longest word.", function() {
+    assert.equal(longestWord("fun&!! time"), "time");
+    assert.equal(longestWord("I love dogs"), "love");
   });
 });
