@@ -42,7 +42,7 @@ describe("QuestionsMarks", function() {
     assert.equal(QuestionsMarks("arrb6???4xxbl5???eee5"), "true");
   });
 });
-describe.only("longestWord", function() {
+describe("longestWord", function() {
   it("should return the longest word.", function() {
     assert.equal(longestWord("fun&!! time"), "time");
     assert.equal(longestWord("I love dogs"), "love");
